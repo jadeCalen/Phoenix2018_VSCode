@@ -280,15 +280,32 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testInit() {
 		System.out.println("TEST MODE INIT");
+
 	}
 	@Override
 	public void testPeriodic() {
+		
+		//if button 1, forwards
+		if(gamepad.getRawButton(1)){
+			tankDrive.setVelocity(1.57*5.95*0.5, 1.57*5.95*0.5);
+			
+		}
+		//if button 2, backwards
+		if(gamepad.getRawButton(2)){
+			tankDrive.setVelocity(-1.57*5.95*0.5, -1.57*5.95*0.5);
+			
+		}
+		else () { //else stop
+			tankDrive.setPercentage(0, 0);
+			}
+
+
 	}
 	// updates the PID in gyro with the sliders or the networktables.
 	public void updatePID() {
 		PIDGains p = new PIDGains();
 	
-		p.p = 1.0; // SmartDashboard.getNumber("DB/Slider 0", 0);
+		p.p = 0.0; // SmartDashboard.getNumber("DB/Slider 0", 0);
 		p.i = 0; // SmartDashboard.getNumber("DB/Slider 1", 0);
 		p.d = 0; // SmartDashboard.getNumber("DB/Slider 2", 0);
 		p.ff = 0; // SmartDashboard.getNumber("DB/Slider 3", 0);
